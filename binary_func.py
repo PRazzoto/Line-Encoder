@@ -11,7 +11,7 @@ def stringToBin(string):
 
 
 input_string = "Café"
-print(stringToBin(input_string))
+# print(stringToBin(input_string))
 
 
 def binToString(binary_string):
@@ -30,4 +30,4 @@ def binToString(binary_string):
 
 
 bin_string = "01100011011000010110011011101001"
-print(binToString(bin_string))
+# print(binToString(bin_string))

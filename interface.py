@@ -14,6 +14,7 @@ class Interface:
         self.sizex = sizex
         self.sizey = sizey
         self.font = font
+        self.buttons = []
 
         Interface._instances.append(self)
 
@@ -26,14 +27,30 @@ class Interface:
         self.window.title(self.name)
         self.window.geometry("%dx%d" % (self.sizex, self.sizey))
 
-    def createEntry(self, text, width=20):
-        self.window.title(self.name)
-        L1 = Label(self.window, text=text, font=self.font, width=width)
-        L1.pack(side=LEFT)
+    def createButton(self, name, action, args=None, placex=0, placey=0, relative=False):
+        if args != None:
+            btn = Button(
+                self.window,
+                text=name,
+                command=lambda: action(args),
+                width=10,
+                font=self.font,
+            )
+        else:
+            btn = Button(
+                self.window, text=name, command=action, width=10, font=self.font
+            )
 
-        E1 = Entry(self.window)
-        E1["width"] = 25
-        E1.pack(side=LEFT)
+        if not relative:
+            btn.place(x=placex, y=placey)
+        else:
+            btn.place(relx=placex, rely=placey, anchor="nw")
+
+        self.buttons.append(btn)
+        return btn
 
     def update(self):
         self.window.mainloop()
+
+    def getWindow(self):
+        return self.window
