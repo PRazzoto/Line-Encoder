@@ -31,3 +31,10 @@ def binToString(binary_string):
 
 bin_string = "01100011011000010110011011101001"
 # print(binToString(bin_string))
+
+
+def binToHex(binary_string):
+    decimal = int(binary_string, 2)
+    hexadecimal = hex(decimal)
+
+    return hexadecimal
