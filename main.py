@@ -5,6 +5,27 @@ from binary_func import *
 def enviarDados(Entry):
     string = Entry.get()
     binary = stringToBin(string)
+    hexadecimal = binToHex(binary)
+
+    tela3 = Interface("Conversão da String", 400, 300)
+    tela3.createWindow(2)
+
+    T1 = Text(tela3.getWindow(), height=5, width=45)
+    T1.pack()
+    text = "Binário:\n" + str(binary)
+    T1.insert(END, text)
+
+    T2 = Text(tela3.getWindow(), height=5, width=45)
+    T2.pack()
+    text = "Hexadecimal:\n" + str(hexadecimal)
+    T2.insert(END, text)
+
+    T3 = Text(tela3.getWindow(), height=5, width=45)
+    T3.pack()
+    text = "8b/6t:\n"  # + chamar criptografia 8b6t
+    T3.insert(END, text)
+
+    tela3.update()
 
     print(binary)
 
@@ -26,8 +47,7 @@ def interfaceDeEnvio():
     E1["width"] = 17
     E1["font"] = interface1.font
     E1.pack(side=LEFT)
-
-    interface1.createButton("Enviar", enviarDados, args=(E1), placex=236, placey=165)
+    interface1.createButton("Enviar", enviarDados, args=(E1), placex=150, placey=170)
 
     interface1.update()
 
