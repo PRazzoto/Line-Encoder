@@ -5,7 +5,21 @@ from binary_func import *
 def enviarDados(Entry):
     string = Entry.get()
     binary = stringToBin(string)
-    hexadecimal = binToHex(binary)
+    hexadecimal = str(binToHex(binary))
+    text_8b6t = ""
+
+    list = []
+
+    for i in range(2, len(hexadecimal)):
+        if i % 2 != 0 and hexadecimal[i] != None:
+            str_hex = hexadecimal[i - 1] + hexadecimal[i]
+            list.append(encode8b6t(str_hex))
+
+    for i in list:
+        for j in i:
+            text_8b6t += " "
+            for x in j:
+                text_8b6t += str(x)
 
     tela3 = Interface("Conversão da String", 400, 300)
     tela3.createWindow(2)
@@ -17,17 +31,15 @@ def enviarDados(Entry):
 
     T2 = Text(tela3.getWindow(), height=5, width=45)
     T2.pack()
-    text = "Hexadecimal:\n" + str(hexadecimal)
+    text = "Hexadecimal:\n" + hexadecimal
     T2.insert(END, text)
 
     T3 = Text(tela3.getWindow(), height=5, width=45)
     T3.pack()
-    text = "8b/6t:\n"  # + chamar criptografia 8b6t
+    text = "8b/6t:\n" + text_8b6t
     T3.insert(END, text)
 
     tela3.update()
-
-    print(binary)
 
 
 def interfaceDeEnvio():
