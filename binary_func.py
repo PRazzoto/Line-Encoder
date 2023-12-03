@@ -10,10 +10,6 @@ def stringToBin(string):
     return binary_result
 
 
-input_string = "Café"
-# print(stringToBin(input_string))
-
-
 def binToString(binary_string):
     # Dividindo a string em chunks de 8 bits
     chunks = [binary_string[i : i + 8] for i in range(0, len(binary_string), 8)]
@@ -29,10 +25,6 @@ def binToString(binary_string):
     return final_string
 
 
-bin_string = "011hex()011011hex()1011hex()11011101hex()1"
-# print(binToString(bin_string))
-
-
 def binToHex(binary_string):
     decimal = int(binary_string, 2)
     hexadecimal = hex(decimal)
@@ -42,6 +34,7 @@ def binToHex(binary_string):
 
 def encode8b6t(hexadecimal_str):
     hexadecimal = hex(int(hexadecimal_str, base=16))
+    print("Receiving: " + hexadecimal)
 
     result = []
     array00 = [-1, 1, 0, 0, -1, 1]
@@ -560,266 +553,264 @@ def encode8b6t(hexadecimal_str):
     if hexadecimal == hex(128):
         result.append(array80)
     if hexadecimal == hex(129):
-        result.append(array82)
-    if hexadecimal == hex(130):
         result.append(array81)
-    if hexadecimal == hex(131):
+    if hexadecimal == hex(130):
         result.append(array82)
-    if hexadecimal == hex(132):
+    if hexadecimal == hex(131):
         result.append(array83)
-    if hexadecimal == hex(133):
+    if hexadecimal == hex(132):
         result.append(array84)
-    if hexadecimal == hex(134):
+    if hexadecimal == hex(133):
         result.append(array85)
-    if hexadecimal == hex(135):
+    if hexadecimal == hex(134):
         result.append(array86)
-    if hexadecimal == hex(136):
+    if hexadecimal == hex(135):
         result.append(array87)
-    if hexadecimal == hex(137):
+    if hexadecimal == hex(136):
         result.append(array88)
-    if hexadecimal == hex(138):
+    if hexadecimal == hex(137):
         result.append(array89)
-    if hexadecimal == hex(139):
+    if hexadecimal == hex(138):
         result.append(array8A)
-    if hexadecimal == hex(140):
+    if hexadecimal == hex(139):
         result.append(array8B)
-    if hexadecimal == hex(141):
+    if hexadecimal == hex(140):
         result.append(array8C)
-    if hexadecimal == hex(142):
+    if hexadecimal == hex(141):
         result.append(array8D)
-    if hexadecimal == hex(143):
+    if hexadecimal == hex(142):
         result.append(array8E)
-    if hexadecimal == hex(144):
+    if hexadecimal == hex(143):
         result.append(array8F)
-    if hexadecimal == hex(145):
+    if hexadecimal == hex(144):
         result.append(array90)
-    if hexadecimal == hex(146):
+    if hexadecimal == hex(145):
         result.append(array91)
-    if hexadecimal == hex(147):
+    if hexadecimal == hex(146):
         result.append(array92)
-    if hexadecimal == hex(148):
+    if hexadecimal == hex(147):
         result.append(array93)
-    if hexadecimal == hex(149):
+    if hexadecimal == hex(148):
         result.append(array94)
-    if hexadecimal == hex(150):
+    if hexadecimal == hex(149):
         result.append(array95)
-    if hexadecimal == hex(151):
+    if hexadecimal == hex(150):
         result.append(array96)
-    if hexadecimal == hex(152):
+    if hexadecimal == hex(151):
         result.append(array97)
-    if hexadecimal == hex(153):
+    if hexadecimal == hex(152):
         result.append(array98)
-    if hexadecimal == hex(154):
+    if hexadecimal == hex(153):
         result.append(array99)
-    if hexadecimal == hex(155):
+    if hexadecimal == hex(154):
         result.append(array9A)
-    if hexadecimal == hex(156):
+    if hexadecimal == hex(155):
         result.append(array9B)
-    if hexadecimal == hex(157):
+    if hexadecimal == hex(156):
         result.append(array9C)
-    if hexadecimal == hex(158):
+    if hexadecimal == hex(157):
         result.append(array9D)
-    if hexadecimal == hex(159):
+    if hexadecimal == hex(158):
         result.append(array9E)
-    if hexadecimal == hex(160):
+    if hexadecimal == hex(159):
         result.append(array9F)
-    if hexadecimal == hex(161):
+    if hexadecimal == hex(160):
         result.append(arrayA0)
-    if hexadecimal == hex(162):
+    if hexadecimal == hex(161):
         result.append(arrayA1)
-    if hexadecimal == hex(163):
+    if hexadecimal == hex(162):
         result.append(arrayA2)
-    if hexadecimal == hex(164):
+    if hexadecimal == hex(163):
         result.append(arrayA3)
-    if hexadecimal == hex(165):
+    if hexadecimal == hex(164):
         result.append(arrayA4)
-    if hexadecimal == hex(166):
+    if hexadecimal == hex(165):
         result.append(arrayA5)
-    if hexadecimal == hex(167):
+    if hexadecimal == hex(166):
         result.append(arrayA6)
-    if hexadecimal == hex(168):
+    if hexadecimal == hex(167):
         result.append(arrayA7)
-    if hexadecimal == hex(169):
+    if hexadecimal == hex(168):
         result.append(arrayA8)
-    if hexadecimal == hex(170):
+    if hexadecimal == hex(169):
         result.append(arrayA9)
-    if hexadecimal == hex(171):
+    if hexadecimal == hex(170):
         result.append(arrayAA)
-    if hexadecimal == hex(172):
+    if hexadecimal == hex(171):
         result.append(arrayAB)
-    if hexadecimal == hex(173):
+    if hexadecimal == hex(172):
         result.append(arrayAC)
-    if hexadecimal == hex(174):
+    if hexadecimal == hex(173):
         result.append(arrayAD)
-    if hexadecimal == hex(175):
+    if hexadecimal == hex(174):
         result.append(arrayAE)
-    if hexadecimal == hex(176):
+    if hexadecimal == hex(175):
         result.append(arrayAF)
-    if hexadecimal == hex(177):
+    if hexadecimal == hex(176):
         result.append(arrayB0)
-    if hexadecimal == hex(178):
+    if hexadecimal == hex(177):
         result.append(arrayB1)
-    if hexadecimal == hex(179):
+    if hexadecimal == hex(178):
         result.append(arrayB2)
-    if hexadecimal == hex(180):
+    if hexadecimal == hex(179):
         result.append(arrayB3)
-    if hexadecimal == hex(181):
+    if hexadecimal == hex(180):
         result.append(arrayB4)
-    if hexadecimal == hex(182):
+    if hexadecimal == hex(181):
         result.append(arrayB5)
-    if hexadecimal == hex(183):
+    if hexadecimal == hex(182):
         result.append(arrayB6)
-    if hexadecimal == hex(184):
+    if hexadecimal == hex(183):
         result.append(arrayB7)
-    if hexadecimal == hex(185):
+    if hexadecimal == hex(184):
         result.append(arrayB8)
-    if hexadecimal == hex(186):
+    if hexadecimal == hex(185):
         result.append(arrayB9)
-    if hexadecimal == hex(187):
+    if hexadecimal == hex(186):
         result.append(arrayBA)
-    if hexadecimal == hex(188):
+    if hexadecimal == hex(187):
         result.append(arrayBB)
-    if hexadecimal == hex(189):
+    if hexadecimal == hex(188):
         result.append(arrayBC)
-    if hexadecimal == hex(190):
+    if hexadecimal == hex(189):
         result.append(arrayBD)
-    if hexadecimal == hex(191):
+    if hexadecimal == hex(190):
         result.append(arrayBE)
-    if hexadecimal == hex(192):
+    if hexadecimal == hex(191):
         result.append(arrayBF)
-    if hexadecimal == hex(193):
+    if hexadecimal == hex(192):
         result.append(arrayC0)
-    if hexadecimal == hex(194):
+    if hexadecimal == hex(193):
         result.append(arrayC1)
-    if hexadecimal == hex(195):
+    if hexadecimal == hex(194):
         result.append(arrayC2)
-    if hexadecimal == hex(196):
+    if hexadecimal == hex(195):
         result.append(arrayC3)
-    if hexadecimal == hex(197):
+    if hexadecimal == hex(196):
         result.append(arrayC4)
-    if hexadecimal == hex(198):
+    if hexadecimal == hex(197):
         result.append(arrayC5)
-    if hexadecimal == hex(199):
+    if hexadecimal == hex(198):
         result.append(arrayC6)
-    if hexadecimal == hex(200):
+    if hexadecimal == hex(199):
         result.append(arrayC7)
-    if hexadecimal == hex(201):
+    if hexadecimal == hex(200):
         result.append(arrayC8)
-    if hexadecimal == hex(202):
+    if hexadecimal == hex(201):
         result.append(arrayC9)
-    if hexadecimal == hex(203):
+    if hexadecimal == hex(202):
         result.append(arrayCA)
-    if hexadecimal == hex(204):
+    if hexadecimal == hex(203):
         result.append(arrayCB)
-    if hexadecimal == hex(205):
+    if hexadecimal == hex(204):
         result.append(arrayCC)
-    if hexadecimal == hex(206):
+    if hexadecimal == hex(205):
         result.append(arrayCD)
-    if hexadecimal == hex(207):
+    if hexadecimal == hex(206):
         result.append(arrayCE)
-    if hexadecimal == hex(208):
+    if hexadecimal == hex(207):
         result.append(arrayCF)
-    if hexadecimal == hex(209):
+    if hexadecimal == hex(208):
         result.append(arrayD0)
-    if hexadecimal == hex(210):
+    if hexadecimal == hex(209):
         result.append(arrayD1)
-    if hexadecimal == hex(211):
+    if hexadecimal == hex(210):
         result.append(arrayD2)
-    if hexadecimal == hex(212):
+    if hexadecimal == hex(211):
         result.append(arrayD3)
-    if hexadecimal == hex(213):
+    if hexadecimal == hex(212):
         result.append(arrayD4)
-    if hexadecimal == hex(214):
+    if hexadecimal == hex(213):
         result.append(arrayD5)
-    if hexadecimal == hex(215):
+    if hexadecimal == hex(214):
         result.append(arrayD6)
-    if hexadecimal == hex(216):
+    if hexadecimal == hex(215):
         result.append(arrayD7)
-    if hexadecimal == hex(217):
+    if hexadecimal == hex(216):
         result.append(arrayD8)
-    if hexadecimal == hex(218):
+    if hexadecimal == hex(217):
         result.append(arrayD9)
-    if hexadecimal == hex(219):
+    if hexadecimal == hex(218):
         result.append(arrayDA)
-    if hexadecimal == hex(220):
+    if hexadecimal == hex(219):
         result.append(arrayDB)
-    if hexadecimal == hex(221):
+    if hexadecimal == hex(220):
         result.append(arrayDC)
-    if hexadecimal == hex(222):
+    if hexadecimal == hex(221):
         result.append(arrayDD)
-    if hexadecimal == hex(223):
+    if hexadecimal == hex(222):
         result.append(arrayDE)
-    if hexadecimal == hex(224):
+    if hexadecimal == hex(223):
         result.append(arrayDF)
-    if hexadecimal == hex(225):
+    if hexadecimal == hex(224):
         result.append(arrayE0)
-    if hexadecimal == hex(226):
+    if hexadecimal == hex(225):
         result.append(arrayE1)
-    if hexadecimal == hex(227):
+    if hexadecimal == hex(226):
         result.append(arrayE2)
-    if hexadecimal == hex(228):
+    if hexadecimal == hex(227):
         result.append(arrayE3)
-    if hexadecimal == hex(229):
+    if hexadecimal == hex(228):
         result.append(arrayE4)
-    if hexadecimal == hex(230):
+    if hexadecimal == hex(229):
         result.append(arrayE5)
-    if hexadecimal == hex(231):
+    if hexadecimal == hex(230):
         result.append(arrayE6)
-    if hexadecimal == hex(232):
+    if hexadecimal == hex(231):
         result.append(arrayE7)
-    if hexadecimal == hex(233):
+    if hexadecimal == hex(232):
         result.append(arrayE8)
-    if hexadecimal == hex(234):
+    if hexadecimal == hex(233):
         result.append(arrayE9)
-    if hexadecimal == hex(235):
+    if hexadecimal == hex(234):
         result.append(arrayEA)
-    if hexadecimal == hex(236):
+    if hexadecimal == hex(235):
         result.append(arrayEB)
-    if hexadecimal == hex(237):
+    if hexadecimal == hex(236):
         result.append(arrayEC)
-    if hexadecimal == hex(238):
+    if hexadecimal == hex(237):
         result.append(arrayED)
-    if hexadecimal == hex(239):
+    if hexadecimal == hex(238):
         result.append(arrayEE)
-    if hexadecimal == hex(240):
+    if hexadecimal == hex(239):
         result.append(arrayEF)
-    if hexadecimal == hex(241):
+    if hexadecimal == hex(240):
         result.append(arrayF0)
-    if hexadecimal == hex(242):
+    if hexadecimal == hex(241):
         result.append(arrayF1)
-    if hexadecimal == hex(243):
+    if hexadecimal == hex(242):
         result.append(arrayF2)
-    if hexadecimal == hex(244):
+    if hexadecimal == hex(243):
         result.append(arrayF3)
-    if hexadecimal == hex(245):
+    if hexadecimal == hex(244):
         result.append(arrayF4)
-    if hexadecimal == hex(246):
+    if hexadecimal == hex(245):
         result.append(arrayF5)
-    if hexadecimal == hex(247):
+    if hexadecimal == hex(246):
         result.append(arrayF6)
-    if hexadecimal == hex(248):
+    if hexadecimal == hex(247):
         result.append(arrayF7)
-    if hexadecimal == hex(249):
+    if hexadecimal == hex(248):
         result.append(arrayF8)
-    if hexadecimal == hex(250):
+    if hexadecimal == hex(249):
         result.append(arrayF9)
-    if hexadecimal == hex(251):
+    if hexadecimal == hex(250):
         result.append(arrayFA)
-    if hexadecimal == hex(252):
+    if hexadecimal == hex(251):
         result.append(arrayFB)
-    if hexadecimal == hex(253):
+    if hexadecimal == hex(252):
         result.append(arrayFC)
-    if hexadecimal == hex(254):
+    if hexadecimal == hex(253):
         result.append(arrayFD)
-    if hexadecimal == hex(255):
+    if hexadecimal == hex(254):
         result.append(arrayFE)
-    if hexadecimal == hex(256):
+    if hexadecimal == hex(255):
         result.append(arrayFF)
     return result
 
 
 """
-    array = [-1,1,0,0,-1,1]
+    array00 = [-1,1,0,0,-1,1]
     array01 = [0,-1,1,-1,1,0]
     array02 = [0,-1,1,0,-1,1]
     array03 = [0,-1,1,1,0,-1]

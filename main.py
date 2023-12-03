@@ -1,26 +1,46 @@
 from interface import *
 from binary_func import *
+from client import *
 
 
 def enviarDados(Entry):
     string = Entry.get()
     binary = stringToBin(string)
     hexadecimal = str(binToHex(binary))
-    text_8b6t = ""
 
     list = []
-
+    text_8b6t = ""
+    soma_ant = 0
     for i in range(2, len(hexadecimal)):
         if i % 2 != 0 and hexadecimal[i] != None:
             str_hex = hexadecimal[i - 1] + hexadecimal[i]
             list.append(encode8b6t(str_hex))
 
+
+    soma = 0
+    flag_inverte = False
+
+
     for i in list:
         for j in i:
+            flag_inverte = False
             text_8b6t += " "
+            soma_ant = soma
+            soma = sum(j)
+            if soma_ant == 1 and soma == 1:
+                flag_inverte = True
+                for x in j:
+                    x = -x
+                    text_8b6t += str(x)
+                    soma = -1
+            print(soma)
             for x in j:
-                text_8b6t += str(x)
+                if flag_inverte == False:
+                    text_8b6t += str(x)
 
+
+
+    send(text_8b6t)
     tela3 = Interface("Conversão da String", 400, 300)
     tela3.createWindow(2)
 
