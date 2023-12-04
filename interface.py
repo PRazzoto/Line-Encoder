@@ -52,5 +52,8 @@ class Interface:
     def update(self):
         self.window.mainloop()
 
+    def destroy(self):
+        self.window.destroy()
+
     def getWindow(self):
         return self.window

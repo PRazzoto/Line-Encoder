@@ -32,9 +32,15 @@ def binToHex(binary_string):
     return hexadecimal
 
 
+def hexToBin(hexadecimal_str):
+    decimal = int(hexadecimal_str, 16)
+    binary_str = bin(decimal)[2:]
+
+    return binary_str.zfill(len(hexadecimal_str) * 4)
+
+
 def encode8b6t(hexadecimal_str):
     hexadecimal = hex(int(hexadecimal_str, base=16))
-    print("Receiving: " + hexadecimal)
 
     result = []
     array00 = [-1, 1, 0, 0, -1, 1]
@@ -809,262 +815,520 @@ def encode8b6t(hexadecimal_str):
     return result
 
 
-"""
-    array00 = [-1,1,0,0,-1,1]
-    array01 = [0,-1,1,-1,1,0]
-    array02 = [0,-1,1,0,-1,1]
-    array03 = [0,-1,1,1,0,-1]
-    array04 = [-1,1,0,1,0,-1]
-    array05 = [1,0,-1,-1,1,0]
-    array06 = [1,0,-1,0,-1,1]
-    array07 = [1,0,-1,1,0,-1]
-    array08 = [-1,1,0,0,1,-1]
-    array09 = [0,-1,1,1,-1,0]
-    array0A = [0,-1,1,0,1,-1]
-    array0B = [0,-1,1,-1,0,1]
-    array0C = [-1,1,0,-1,0,1]
-    array0D = [1,0,-1,1,-1,0]
-    array0E = [1,0,-1,0,1,-1]
-    array0F = [1,0,-1,-1,0,1]
-    array10 = [0,-1,-1,1,0,1]
-    array11 = [-1,0,-1,0,1,1]
-    array12 = [-1,0,-1,1,0,1]
-    array13 = [-1,0,-1,1,1,0]
-    array14 = [0,-1,-1,1,1,0]
-    array15 = [-1,-1,0,0,1,1]
-    array16 = [-1,-1,0,1,0,1]
-    array17 = [-1,-1,0,1,1,0]
-    array18 = [-1,1,0,-1,1,0]
-    array19 = [1,-1,0,-1,1,0]
-    array1A = [-1,1,1,-1,1,0]
-    array1B = [1,0,0,-1,1,0]
-    array1C = [1,0,0,1,-1,0]
-    array1D = [-1,1,1,1,-1,0]
-    array1E = [1,-1,0,1,-1,0]
-    array1F = [-1,1,0,1,-1,0]
-    array20 = [-1,1,1,-1,0,0]
-    array21 = [1,0,0,1,-1,-1]
-    array22 = [-1,1,0,-1,1,1]
-    array23 = [1,-1,0,-1,1,1]
-    array24 = [1,-1,0,1,0,0]
-    array25 = [-1,1,0,1,0,0]
-    array26 = [1,0,0,-1,0,0]
-    array27 = [-1,1,1,1,-1,-1]
-    array28 = [0,1,1,-1,0,-1]
-    array29 = [1,0,1,0,-1,-1]
-    array2A = [1,0,1,-1,0,-1]
-    array2B = [1,0,1,-1,-1,0]
-    array2C = [0,1,1,-1,-1,0]
-    array2D = [1,1,0,0,-1,-1]
-    array2E = [1,1,0,-1,0,-1]
-    array2F = [1,1,0,-1,-1,0]
-    array30 = [1,-1,0,0,-1,1]
-    array31 = [0,1,-1,-1,1,0]
-    array32 = [0,1,-1,0,-1,1]
-    array33 = [0,1,-1,1,0,-1]
-    array34 = [1,-1,0,1,0,-1]
-    array35 = [-1,0,1,-1,1,0]
-    array36 = [-1,0,1,0,-1,1]
-    array37 = [-1,0,1,1,0,-1]
-    array38 = [1,-1,0,0,1,-1]
-    array39 = [0,1,-1,1,-1,0]
-    array3A = [0,1,-1,0,1,-1]
-    array3B = [0,1,-1,-1,0,1]
-    array3C = [1,-1,0,-1,0,1]
-    array3D = [-1,0,1,1,-1,0]
-    array3E = [-1,0,1,0,1,-1]
-    array3F = [-1,0,1,-1,0,1]
-    array40 = [-1,0,0,1,0,1]
-    array41 = [0,-1,0,0,1,1]
-    array42 = [0,-1,0,1,0,1]
-    array43 = [0,-1,0,1,1,0]
-    array44 = [-1,0,0,1,1,0]
-    array45 = [0,0,-1,0,1,1]
-    array46 = [0,0,-1,1,0,1]
-    array47 = [0,0,-1,1,1,0]
-    array48 = [0,0,1,0,0,0]
-    array49 = [1,1,-1,0,0,0]
-    array4A = [1,-1,1,0,0,0]
-    array4B = [-1,1,1,0,0,0]
-    array4C = [0,1,-1,0,0,0]
-    array4D = [1,0,-1,0,0,0]
-    array4E = [0,-1,1,0,0,0]
-    array4F = [-1,0,1,0,0,0]
-    array50 = [1,-1,-1,1,0,1]
-    array51 = [-1,1,-1,0,1,1]
-    array52 = [-1,1,-1,1,0,1]
-    array53 = [-1,1,-1,1,1,0]
-    array54 = [1,-1,-1,1,1,0]
-    array55 = [-1,-1,1,0,1,1]
-    array56 = [-1,-1,1,1,0,1]
-    array57 = [-1,-1,1,1,1,0]
-    array58 = [-1,-1,0,1,1,1]
-    array59 = [-1,0,-1,1,1,1]
-    array5A = [0,-1,-1,1,1,1]
-    array5B = [0,-1,-1,0,1,1]
-    array5C = [1,-1,-1,0,1,1]
-    array5D = [-1,0,0,0,1,1]
-    array5E = [0,1,1,1,-1,-1]
-    array5F = [0,1,1,1,-1,-1]
-    array60 = [0,1,1,0,-1,0]
-    array61 = [1,0,1,-1,0,0]
-    array62 = [1,0,1,0,-1,0]
-    array63 = [1,0,1,0,0,-1]
-    array64 = [0,1,1,0,0,-1]
-    array65 = [1,1,0,-1,0,0]
-    array66 = [1,1,0,0,-1,0]
-    array67 = [1,1,0,0,0,-1]
-    array68 = [0,1,1,-1,1,-1]
-    array69 = [1,0,1,1,-1,-1]
-    array6A = [1,0,1,-1,1,-1]
-    array6B = [1,0,1,-1,-1,1]
-    array6C = [0,1,1,-1,-1,1]
-    array6D = [1,1,0,1,-1,-1]
-    array6E = [1,1,0,-1,1,-1]
-    array6F = [1,1,0,-1,-1,1]
-    array70 = [0,0,0,1,1,-1]
-    array71 = [0,0,0,1,-1,1]
-    array72 = [0,0,0,-1,1,1]
-    array73 = [0,0,0,1,0,0]
-    array74 = [0,0,0,1,0,-1]
-    array75 = [0,0,0,1,-1,0]
-    array76 = [0,0,0,-1,0,1]
-    array77 = [0,0,0,-1,1,0]
-    array78 = [1,1,1,-1,-1,0]
-    array79 = [1,1,1,-1,0,-1]
-    array7A = [1,1,1,0,-1,-1]
-    array7B = [0,1,1,0,-1,-1]
-    array7C = [-1,0,0,-1,1,1]
-    array7D = [-1,0,0,1,0,0]
-    array7E = [1,-1,-1,-1,1,1]
-    array7F = [1,-1,-1,1,0,0]
-    array80 = [-1,0,0,1,-1,1]
-    array81 = [0,-1,0,-1,1,1]
-    array82 = [0,-1,0,1,-1,1]
-    array83 = [0,-1,0,1,1,-1]
-    array84 = [-1,0,0,1,1,-1]
-    array85 = [0,0,-1,-1,1,1]
-    array86 = [0,0,-1,1,-1,1]
-    array87 = [0,0,-1,1,1,-1]
-    array88 = [-1,0,0,0,1,0]
-    array89 = [0,-1,0,1,0,0]
-    array8A = [0,-1,0,0,1,0]
-    array8B = [0,-1,0,0,0,1]
-    array8C = [-1,0,0,0,0,1]
-    array8D = [0,0,-1,1,0,0]
-    array8E = [0,0,-1,0,1,0]
-    array8F = [0,0,-1,0,0,1]
-    array90 = [1,-1,-1,1,-1,1]
-    array91 = [-1,1,-1,-1,1,1]
-    array92 = [-1,1,-1,1,-1,1]
-    array93 = [-1,1,-1,1,1,-1]
-    array94 = [1,-1,-1,1,1,-1]
-    array95 = [-1,-1,1,-1,1,1]
-    array96 = [-1,-1,1,1,-1,1]
-    array97 = [-1,-1,1,1,1,-1]
-    array98 = [1,-1,-1,0,1,0]
-    array99 = [-1,1,-1,1,0,0]
-    array9A = [-1,1,-1,0,1,0]
-    array9B = [-1,1,-1,0,0,1]
-    array9C = [1,-1,-1,0,0,1]
-    array9D = [-1,-1,1,1,0,0]
-    array9E = [-1,-1,1,0,1,0]
-    array9F = [-1,-1,1,0,0,1]
-    arrayA0 = [-1,1,1,0,-1,0]
-    arrayA1 = [1,-1,1,-1,0,0]
-    arrayA2 = [1,-1,1,0,-1,0]
-    arrayA3 = [1,-1,1,0,0,-1]
-    arrayA4 = [-1,1,1,0,-1]
-    arrayA5 = [1,1,-1,-1,0,0]
-    arrayA6 = [1,1,-1,0,-1,0]
-    arrayA7 = [1,1,-1,0,0,-1]
-    arrayA8 = [-1,1,1,-1,1,-1]
-    arrayA9 = [1,-1,1,1,-1,-1]
-    arrayAA = [1,-1,1,-1,1,-1]
-    arrayAB = [1,-1,1,-1,-1,1]
-    arrayAC = [-1,1,1,-1,-1,1]
-    arrayAD = [1,1,-1,1,-1,-1]
-    arrayAE = [1,1,-1,-1,1,-1]
-    arrayAF = [1,1,-1,-1,-1,1]
-    arrayB0 = [1,0,0,0,-1,0]
-    arrayB1 = [0,1,0,-1,0,0]
-    arrayB2 = [0,1,0,0,-1,0]
-    arrayB3 = [0,1,0,0,0,-1]
-    arrayB4 = [1,0,0,0,0,-1]
-    arrayB5 = [0,0,1,-1,0,0]
-    arrayB6 = [0,0,1,0,-1,0]
-    arrayB7 = [0,0,1,0,0,-1]
-    arrayB8 = [1,0,0,-1,1,-1]
-    arrayB9 = [0,1,0,1,-1,-1]
-    arrayBA = [0,1,0,-1,1,-1]
-    arrayBB = [0,1,0,-1,-1,1]
-    arrayBC = [1,0,0,-1,-1,1]
-    arrayBD = [0,0,1,1,-1,-1]
-    arrayBE = [0,0,1,-1,1,-1]
-    arrayBF = [0,0,1,-1,-1,1]
-    arrayC0 = [-1,1,0,1,-1,1]
-    arrayC1 = [0,-1,1,-1,1,1]
-    arrayC2 = [0,-1,1,1,-1,1]
-    arrayC3 = [0,-1,1,1,1,-1]
-    arrayC4 = [-1,1,0,1,1,-1]
-    arrayC5 = [1,0,-1,-1,1,1]
-    arrayC6 = [1,0,-1,1,-1,1]
-    arrayC7 = [1,0,-1,1,1,-1]
-    arrayC8 = [-1,1,0,0,1,0]
-    arrayC9 = [0,-1,1,1,0,0]
-    arrayCA = [0,-1,1,1,0,0]
-    arrayCB = [0,-1,1,0,0,1]
-    arrayCC = [-1,1,0,0,0,1]
-    arrayCD = [1,0,-1,1,0,0]
-    arrayCE = [1,0,-1,0,1,0]
-    arrayCF = [1,0,-1,0,0,1]
-    arrayD0 = [1,-1,0,1,-1,1]
-    arrayD1 = [0,1,-1,-1,1,1]
-    arrayD2 = [0,1,-1,1,-1,1]
-    arrayD3 = [0,1,-1,1,1,-1]
-    arrayD4 = [1,-1,0,1,1,-1]
-    arrayD5 = [-1,0,1,-1,1,1]
-    arrayD6 = [-1,0,1,1,-1,1]
-    arrayD7 = [-1,0,1,1,1,-1]
-    arrayD8 = [1,-1,0,0,1,0]
-    arrayD9 = [0,1,-1,1,0,0]
-    arrayDA = [0,1,-1,0,1,0]
-    arrayDB = [0,1,-1,0,0,1]
-    arrayDC = [1,-1,0,0,0,1]
-    arrayDD = [-1,0,1,1,0,0]
-    arrayDE = [-1,0,1,0,1,0]
-    arrayDF = [-1,0,1,0,0,1]
-    arrayE0 = [-1,1,1,0,-1,1]
-    arrayE1 = [1,-1,1,-1,1,0]
-    arrayE2 = [1,-1,1,0,-1,1]
-    arrayE3 = [1,-1,1,1,0,-1]
-    arrayE4 = [-1,1,1,1,0,-1]
-    arrayE5 = [1,1,-1,-1,1,0]
-    arrayE6 = [1,1,-1,0,-1,1]
-    arrayE7 = [1,1,-1,1,0,-1]
-    arrayE8 = [-1,1,1,0,1,-1]
-    arrayE9 = [1,-1,1,1,-1,0]
-    arrayEA = [1,-1,1,0,1,-1]
-    arrayEB = [1,-1,1,-1,0,1]
-    arrayEC = [-1,1,1,-1,0,1]
-    arrayED = [1,1,-1,1,-1,0]
-    arrayEE = [1,1,-1,0,1,-1]
-    arrayEF = [1,1,-1,-1,0,1]
-    arrayF0 = [1,0,0,0,-1,1]
-    arrayF1 = [0,1,0,-1,1,0]
-    arrayF2 = [0,1,0,0,-1,1]
-    arrayF3 = [0,1,0,1,0,-1]
-    arrayF4 = [1,0,0,1,0,-1]
-    arrayF5 = [0,0,1,-1,1,0]
-    arrayF6 = [0,0,1,0,-1,1]
-    arrayF7 = [0,0,1,1,0,-1]
-    arrayF8 = [1,0,0,0,1,-1]
-    arrayF9 = [0,1,0,1,-1,0]
-    arrayFA = [0,1,0,0,1,-1]
-    arrayFB = [0,1,0,-1,0,1]
-    arrayFC = [1,0,0,-1,0,1]
-    arrayFD = [0,0,1,1,-1,0]
-    arrayFE = [0,0,1,0,1,-1]
-    arrayFF = [0,0,1,-1,0,1]
+def decode8b6t(msg):
+    result = ""
 
-    """
+    if msg == [-1, 1, 0, 0, -1, 1]:
+        result += hex(0)[2:]
+    if msg == [0, -1, 1, -1, 1, 0]:
+        result += hex(1)[2:]
+    if msg == [0, -1, 1, 0, -1, 1]:
+        result += hex(2)[2:]
+    if msg == [0, -1, 1, 1, 0, -1]:
+        result += hex(3)[2:]
+    if msg == [-1, 1, 0, 1, 0, -1]:
+        result += hex(4)[2:]
+    if msg == [1, 0, -1, -1, 1, 0]:
+        result += hex(5)[2:]
+    if msg == [1, 0, -1, 0, -1, 1]:
+        result += hex(6)[2:]
+    if msg == [1, 0, -1, 1, 0, -1]:
+        result += hex(7)[2:]
+    if msg == [-1, 1, 0, 0, 1, -1]:
+        result += hex(8)[2:]
+    if msg == [0, -1, 1, 1, -1, 0]:
+        result += hex(9)[2:]
+    if msg == [0, -1, 1, 0, 1, -1]:
+        result += hex(10)[2:]
+    if msg == [0, -1, 1, -1, 0, 1]:
+        result += hex(11)[2:]
+    if msg == [-1, 1, 0, -1, 0, 1]:
+        result += hex(12)[2:]
+    if msg == [1, 0, -1, 1, -1, 0]:
+        result += hex(13)[2:]
+    if msg == [1, 0, -1, 0, 1, -1]:
+        result += hex(14)[2:]
+    if msg == [1, 0, -1, -1, 0, 1]:
+        result += hex(15)[2:]
+    if msg == [0, -1, -1, 1, 0, 1]:
+        result += hex(16)[2:]
+    if msg == [-1, 0, -1, 0, 1, 1]:
+        result += hex(17)[2:]
+    if msg == [-1, 0, -1, 1, 0, 1]:
+        result += hex(18)[2:]
+    if msg == [-1, 0, -1, 1, 1, 0]:
+        result += hex(19)[2:]
+    if msg == [0, -1, -1, 1, 1, 0]:
+        result += hex(20)[2:]
+    if msg == [-1, -1, 0, 0, 1, 1]:
+        result += hex(21)[2:]
+    if msg == [-1, -1, 0, 1, 0, 1]:
+        result += hex(22)[2:]
+    if msg == [-1, -1, 0, 1, 1, 0]:
+        result += hex(23)[2:]
+    if msg == [-1, 1, 0, -1, 1, 0]:
+        result += hex(24)[2:]
+    if msg == [1, -1, 0, -1, 1, 0]:
+        result += hex(25)[2:]
+    if msg == [-1, 1, 1, -1, 1, 0]:
+        result += hex(26)[2:]
+    if msg == [1, 0, 0, -1, 1, 0]:
+        result += hex(27)[2:]
+    if msg == [1, 0, 0, 1, -1, 0]:
+        result += hex(28)[2:]
+    if msg == [-1, 1, 1, 1, -1, 0]:
+        result += hex(29)[2:]
+    if msg == [1, -1, 0, 1, -1, 0]:
+        result += hex(30)[2:]
+    if msg == [-1, 1, 0, 1, -1, 0]:
+        result += hex(31)[2:]
+    if msg == [-1, 1, 1, -1, 0, 0]:
+        result += hex(32)[2:]
+    if msg == [1, 0, 0, 1, -1, -1]:
+        result += hex(33)[2:]
+    if msg == [-1, 1, 0, -1, 1, 1]:
+        result += hex(34)[2:]
+    if msg == [1, -1, 0, -1, 1, 1]:
+        result += hex(35)[2:]
+    if msg == [1, -1, 0, 1, 0, 0]:
+        result += hex(36)[2:]
+    if msg == [-1, 1, 0, 1, 0, 0]:
+        result += hex(37)[2:]
+    if msg == [1, 0, 0, -1, 0, 0]:
+        result += hex(38)[2:]
+    if msg == [-1, 1, 1, 1, -1, -1]:
+        result += hex(39)[2:]
+    if msg == [0, 1, 1, -1, 0, -1]:
+        result += hex(40)[2:]
+    if msg == [1, 0, 1, 0, -1, -1]:
+        result += hex(41)[2:]
+    if msg == [1, 0, 1, -1, 0, -1]:
+        result += hex(42)[2:]
+    if msg == [1, 0, 1, -1, -1, 0]:
+        result += hex(43)[2:]
+    if msg == [0, 1, 1, -1, -1, 0]:
+        result += hex(44)[2:]
+    if msg == [1, 1, 0, 0, -1, -1]:
+        result += hex(45)[2:]
+    if msg == [1, 1, 0, -1, 0, -1]:
+        result += hex(46)[2:]
+    if msg == [1, 1, 0, -1, -1, 0]:
+        result += hex(47)[2:]
+    if msg == [1, -1, 0, 0, -1, 1]:
+        result += hex(48)[2:]
+    if msg == [0, 1, -1, -1, 1, 0]:
+        result += hex(49)[2:]
+    if msg == [0, 1, -1, 0, -1, 1]:
+        result += hex(50)[2:]
+    if msg == [0, 1, -1, 1, 0, -1]:
+        result += hex(51)[2:]
+    if msg == [1, -1, 0, 1, 0, -1]:
+        result += hex(52)[2:]
+    if msg == [-1, 0, 1, -1, 1, 0]:
+        result += hex(53)[2:]
+    if msg == [-1, 0, 1, 0, -1, 1]:
+        result += hex(54)[2:]
+    if msg == [-1, 0, 1, 1, 0, -1]:
+        result += hex(55)[2:]
+    if msg == [1, -1, 0, 0, 1, -1]:
+        result += hex(56)[2:]
+    if msg == [0, 1, -1, 1, -1, 0]:
+        result += hex(57)[2:]
+    if msg == [0, 1, -1, 0, 1, -1]:
+        result += hex(58)[2:]
+    if msg == [0, 1, -1, -1, 0, 1]:
+        result += hex(59)[2:]
+    if msg == [1, -1, 0, -1, 0, 1]:
+        result += hex(60)[2:]
+    if msg == [-1, 0, 1, 1, -1, 0]:
+        result += hex(61)[2:]
+    if msg == [-1, 0, 1, 0, 1, -1]:
+        result += hex(62)[2:]
+    if msg == [-1, 0, 1, -1, 0, 1]:
+        result += hex(63)[2:]
+    if msg == [-1, 0, 0, 1, 0, 1]:
+        result += hex(64)[2:]
+    if msg == [0, -1, 0, 0, 1, 1]:
+        result += hex(65)[2:]
+    if msg == [0, -1, 0, 1, 0, 1]:
+        result += hex(66)[2:]
+    if msg == [0, -1, 0, 1, 1, 0]:
+        result += hex(67)[2:]
+    if msg == [-1, 0, 0, 1, 1, 0]:
+        result += hex(68)[2:]
+    if msg == [0, 0, -1, 0, 1, 1]:
+        result += hex(69)[2:]
+    if msg == [0, 0, -1, 1, 0, 1]:
+        result += hex(70)[2:]
+    if msg == [0, 0, -1, 1, 1, 0]:
+        result += hex(71)[2:]
+    if msg == [0, 0, 1, 0, 0, 0]:
+        result += hex(72)[2:]
+    if msg == [1, 1, -1, 0, 0, 0]:
+        result += hex(73)[2:]
+    if msg == [1, -1, 1, 0, 0, 0]:
+        result += hex(74)[2:]
+    if msg == [-1, 1, 1, 0, 0, 0]:
+        result += hex(75)[2:]
+    if msg == [0, 1, -1, 0, 0, 0]:
+        result += hex(76)[2:]
+    if msg == [1, 0, -1, 0, 0, 0]:
+        result += hex(77)[2:]
+    if msg == [0, -1, 1, 0, 0, 0]:
+        result += hex(78)[2:]
+    if msg == [-1, 0, 1, 0, 0, 0]:
+        result += hex(79)[2:]
+    if msg == [1, -1, -1, 1, 0, 1]:
+        result += hex(80)[2:]
+    if msg == [-1, 1, -1, 0, 1, 1]:
+        result += hex(81)[2:]
+    if msg == [-1, 1, -1, 1, 0, 1]:
+        result += hex(82)[2:]
+    if msg == [-1, 1, -1, 1, 1, 0]:
+        result += hex(83)[2:]
+    if msg == [1, -1, -1, 1, 1, 0]:
+        result += hex(84)[2:]
+    if msg == [-1, -1, 1, 0, 1, 1]:
+        result += hex(85)[2:]
+    if msg == [-1, -1, 1, 1, 0, 1]:
+        result += hex(86)[2:]
+    if msg == [-1, -1, 1, 1, 1, 0]:
+        result += hex(87)[2:]
+    if msg == [-1, -1, 0, 1, 1, 1]:
+        result += hex(88)[2:]
+    if msg == [-1, 0, -1, 1, 1, 1]:
+        result += hex(89)[2:]
+    if msg == [0, -1, -1, 1, 1, 1]:
+        result += hex(90)[2:]
+    if msg == [0, -1, -1, 0, 1, 1]:
+        result += hex(91)[2:]
+    if msg == [1, -1, -1, 0, 1, 1]:
+        result += hex(92)[2:]
+    if msg == [-1, 0, 0, 0, 1, 1]:
+        result += hex(93)[2:]
+    if msg == [0, 1, 1, 1, -1, -1]:
+        result += hex(94)[2:]
+    if msg == [0, 1, 1, 1, -1, -1]:
+        result += hex(95)[2:]
+    if msg == [0, 1, 1, 0, -1, 0]:
+        result += hex(96)[2:]
+    if msg == [1, 0, 1, -1, 0, 0]:
+        result += hex(97)[2:]
+    if msg == [1, 0, 1, 0, -1, 0]:
+        result += hex(98)[2:]
+    if msg == [1, 0, 1, 0, 0, -1]:
+        result += hex(99)[2:]
+    if msg == [0, 1, 1, 0, 0, -1]:
+        result += hex(100)[2:]
+    if msg == [1, 1, 0, -1, 0, 0]:
+        result += hex(101)[2:]
+    if msg == [1, 1, 0, 0, -1, 0]:
+        result += hex(102)[2:]
+    if msg == [1, 1, 0, 0, 0, -1]:
+        result += hex(103)[2:]
+    if msg == [0, 1, 1, -1, 1, -1]:
+        result += hex(104)[2:]
+    if msg == [1, 0, 1, 1, -1, -1]:
+        result += hex(105)[2:]
+    if msg == [1, 0, 1, -1, 1, -1]:
+        result += hex(106)[2:]
+    if msg == [1, 0, 1, -1, -1, 1]:
+        result += hex(107)[2:]
+    if msg == [0, 1, 1, -1, -1, 1]:
+        result += hex(108)[2:]
+    if msg == [1, 1, 0, 1, -1, -1]:
+        result += hex(109)[2:]
+    if msg == [1, 1, 0, -1, 1, -1]:
+        result += hex(110)[2:]
+    if msg == [1, 1, 0, -1, -1, 1]:
+        result += hex(111)[2:]
+    if msg == [0, 0, 0, 1, 1, -1]:
+        result += hex(112)[2:]
+    if msg == [0, 0, 0, 1, -1, 1]:
+        result += hex(113)[2:]
+    if msg == [0, 0, 0, -1, 1, 1]:
+        result += hex(114)[2:]
+    if msg == [0, 0, 0, 1, 0, 0]:
+        result += hex(115)[2:]
+    if msg == [0, 0, 0, 1, 0, -1]:
+        result += hex(116)[2:]
+    if msg == [0, 0, 0, 1, -1, 0]:
+        result += hex(117)[2:]
+    if msg == [0, 0, 0, -1, 0, 1]:
+        result += hex(118)[2:]
+    if msg == [0, 0, 0, -1, 1, 0]:
+        result += hex(119)[2:]
+    if msg == [1, 1, 1, -1, -1, 0]:
+        result += hex(120)[2:]
+    if msg == [1, 1, 1, -1, 0, -1]:
+        result += hex(121)[2:]
+    if msg == [1, 1, 1, 0, -1, -1]:
+        result += hex(122)[2:]
+    if msg == [0, 1, 1, 0, -1, -1]:
+        result += hex(123)[2:]
+    if msg == [-1, 0, 0, -1, 1, 1]:
+        result += hex(124)[2:]
+    if msg == [-1, 0, 0, 1, 0, 0]:
+        result += hex(125)[2:]
+    if msg == [1, -1, -1, -1, 1, 1]:
+        result += hex(126)[2:]
+    if msg == [1, -1, -1, 1, 0, 0]:
+        result += hex(127)[2:]
+    if msg == [-1, 0, 0, 1, -1, 1]:
+        result += hex(128)[2:]
+    if msg == [0, -1, 0, -1, 1, 1]:
+        result += hex(129)[2:]
+    if msg == [0, -1, 0, 1, -1, 1]:
+        result += hex(130)[2:]
+    if msg == [0, -1, 0, 1, 1, -1]:
+        result += hex(131)[2:]
+    if msg == [-1, 0, 0, 1, 1, -1]:
+        result += hex(132)[2:]
+    if msg == [0, 0, -1, -1, 1, 1]:
+        result += hex(133)[2:]
+    if msg == [0, 0, -1, 1, -1, 1]:
+        result += hex(134)[2:]
+    if msg == [0, 0, -1, 1, 1, -1]:
+        result += hex(135)[2:]
+    if msg == [-1, 0, 0, 0, 1, 0]:
+        result += hex(136)[2:]
+    if msg == [0, -1, 0, 1, 0, 0]:
+        result += hex(137)[2:]
+    if msg == [0, -1, 0, 0, 1, 0]:
+        result += hex(138)[2:]
+    if msg == [0, -1, 0, 0, 0, 1]:
+        result += hex(139)[2:]
+    if msg == [-1, 0, 0, 0, 0, 1]:
+        result += hex(140)[2:]
+    if msg == [0, 0, -1, 1, 0, 0]:
+        result += hex(141)[2:]
+    if msg == [0, 0, -1, 0, 1, 0]:
+        result += hex(142)[2:]
+    if msg == [0, 0, -1, 0, 0, 1]:
+        result += hex(143)[2:]
+    if msg == [1, -1, -1, 1, -1, 1]:
+        result += hex(144)[2:]
+    if msg == [-1, 1, -1, -1, 1, 1]:
+        result += hex(145)[2:]
+    if msg == [-1, 1, -1, 1, -1, 1]:
+        result += hex(146)[2:]
+    if msg == [-1, 1, -1, 1, 1, -1]:
+        result += hex(147)[2:]
+    if msg == [1, -1, -1, 1, 1, -1]:
+        result += hex(148)[2:]
+    if msg == [-1, -1, 1, -1, 1, 1]:
+        result += hex(149)[2:]
+    if msg == [-1, -1, 1, 1, -1, 1]:
+        result += hex(150)[2:]
+    if msg == [-1, -1, 1, 1, 1, -1]:
+        result += hex(151)[2:]
+    if msg == [1, -1, -1, 0, 1, 0]:
+        result += hex(152)[2:]
+    if msg == [-1, 1, -1, 1, 0, 0]:
+        result += hex(153)[2:]
+    if msg == [-1, 1, -1, 0, 1, 0]:
+        result += hex(154)[2:]
+    if msg == [-1, 1, -1, 0, 0, 1]:
+        result += hex(155)[2:]
+    if msg == [1, -1, -1, 0, 0, 1]:
+        result += hex(156)[2:]
+    if msg == [-1, -1, 1, 1, 0, 0]:
+        result += hex(157)[2:]
+    if msg == [-1, -1, 1, 0, 1, 0]:
+        result += hex(158)[2:]
+    if msg == [-1, -1, 1, 0, 0, 1]:
+        result += hex(159)[2:]
+    if msg == [-1, 1, 1, 0, -1, 0]:
+        result += hex(160)[2:]
+    if msg == [1, -1, 1, -1, 0, 0]:
+        result += hex(161)[2:]
+    if msg == [1, -1, 1, 0, -1, 0]:
+        result += hex(162)[2:]
+    if msg == [1, -1, 1, 0, 0, -1]:
+        result += hex(163)[2:]
+    if msg == [-1, 1, 1, 0, -1]:
+        result += hex(164)[2:]
+    if msg == [1, 1, -1, -1, 0, 0]:
+        result += hex(165)[2:]
+    if msg == [1, 1, -1, 0, -1, 0]:
+        result += hex(166)[2:]
+    if msg == [1, 1, -1, 0, 0, -1]:
+        result += hex(167)[2:]
+    if msg == [-1, 1, 1, -1, 1, -1]:
+        result += hex(168)[2:]
+    if msg == [1, -1, 1, 1, -1, -1]:
+        result += hex(169)[2:]
+    if msg == [1, -1, 1, -1, 1, -1]:
+        result += hex(170)[2:]
+    if msg == [1, -1, 1, -1, -1, 1]:
+        result += hex(171)[2:]
+    if msg == [-1, 1, 1, -1, -1, 1]:
+        result += hex(172)[2:]
+    if msg == [1, 1, -1, 1, -1, -1]:
+        result += hex(173)[2:]
+    if msg == [1, 1, -1, -1, 1, -1]:
+        result += hex(174)[2:]
+    if msg == [1, 1, -1, -1, -1, 1]:
+        result += hex(175)[2:]
+    if msg == [1, 0, 0, 0, -1, 0]:
+        result += hex(176)[2:]
+    if msg == [0, 1, 0, -1, 0, 0]:
+        result += hex(177)[2:]
+    if msg == [0, 1, 0, 0, -1, 0]:
+        result += hex(178)[2:]
+    if msg == [0, 1, 0, 0, 0, -1]:
+        result += hex(179)[2:]
+    if msg == [1, 0, 0, 0, 0, -1]:
+        result += hex(180)[2:]
+    if msg == [0, 0, 1, -1, 0, 0]:
+        result += hex(181)[2:]
+    if msg == [0, 0, 1, 0, -1, 0]:
+        result += hex(182)[2:]
+    if msg == [0, 0, 1, 0, 0, -1]:
+        result += hex(183)[2:]
+    if msg == [1, 0, 0, -1, 1, -1]:
+        result += hex(184)[2:]
+    if msg == [0, 1, 0, 1, -1, -1]:
+        result += hex(185)[2:]
+    if msg == [0, 1, 0, -1, 1, -1]:
+        result += hex(186)[2:]
+    if msg == [0, 1, 0, -1, -1, 1]:
+        result += hex(187)[2:]
+    if msg == [1, 0, 0, -1, -1, 1]:
+        result += hex(188)[2:]
+    if msg == [0, 0, 1, 1, -1, -1]:
+        result += hex(189)[2:]
+    if msg == [0, 0, 1, -1, 1, -1]:
+        result += hex(190)[2:]
+    if msg == [0, 0, 1, -1, -1, 1]:
+        result += hex(191)[2:]
+    if msg == [-1, 1, 0, 1, -1, 1]:
+        result += hex(192)[2:]
+    if msg == [0, -1, 1, -1, 1, 1]:
+        result += hex(193)[2:]
+    if msg == [0, -1, 1, 1, -1, 1]:
+        result += hex(194)[2:]
+    if msg == [0, -1, 1, 1, 1, -1]:
+        result += hex(195)[2:]
+    if msg == [-1, 1, 0, 1, 1, -1]:
+        result += hex(196)[2:]
+    if msg == [1, 0, -1, -1, 1, 1]:
+        result += hex(197)[2:]
+    if msg == [1, 0, -1, 1, -1, 1]:
+        result += hex(198)[2:]
+    if msg == [1, 0, -1, 1, 1, -1]:
+        result += hex(199)[2:]
+    if msg == [-1, 1, 0, 0, 1, 0]:
+        result += hex(200)[2:]
+    if msg == [0, -1, 1, 1, 0, 0]:
+        result += hex(201)[2:]
+    if msg == [0, -1, 1, 1, 0, 0]:
+        result += hex(202)[2:]
+    if msg == [0, -1, 1, 0, 0, 1]:
+        result += hex(203)[2:]
+    if msg == [-1, 1, 0, 0, 0, 1]:
+        result += hex(204)[2:]
+    if msg == [1, 0, -1, 1, 0, 0]:
+        result += hex(205)[2:]
+    if msg == [1, 0, -1, 0, 1, 0]:
+        result += hex(206)[2:]
+    if msg == [1, 0, -1, 0, 0, 1]:
+        result += hex(207)[2:]
+    if msg == [1, -1, 0, 1, -1, 1]:
+        result += hex(208)[2:]
+    if msg == [0, 1, -1, -1, 1, 1]:
+        result += hex(209)[2:]
+    if msg == [0, 1, -1, 1, -1, 1]:
+        result += hex(210)[2:]
+    if msg == [0, 1, -1, 1, 1, -1]:
+        result += hex(211)[2:]
+    if msg == [1, -1, 0, 1, 1, -1]:
+        result += hex(212)[2:]
+    if msg == [-1, 0, 1, -1, 1, 1]:
+        result += hex(213)[2:]
+    if msg == [-1, 0, 1, 1, -1, 1]:
+        result += hex(214)[2:]
+    if msg == [-1, 0, 1, 1, 1, -1]:
+        result += hex(215)[2:]
+    if msg == [1, -1, 0, 0, 1, 0]:
+        result += hex(216)[2:]
+    if msg == [0, 1, -1, 1, 0, 0]:
+        result += hex(217)[2:]
+    if msg == [0, 1, -1, 0, 1, 0]:
+        result += hex(218)[2:]
+    if msg == [0, 1, -1, 0, 0, 1]:
+        result += hex(219)[2:]
+    if msg == [1, -1, 0, 0, 0, 1]:
+        result += hex(220)[2:]
+    if msg == [-1, 0, 1, 1, 0, 0]:
+        result += hex(221)[2:]
+    if msg == [-1, 0, 1, 0, 1, 0]:
+        result += hex(222)[2:]
+    if msg == [-1, 0, 1, 0, 0, 1]:
+        result += hex(223)[2:]
+    if msg == [-1, 1, 1, 0, -1, 1]:
+        result += hex(224)[2:]
+    if msg == [1, -1, 1, -1, 1, 0]:
+        result += hex(225)[2:]
+    if msg == [1, -1, 1, 0, -1, 1]:
+        result += hex(226)[2:]
+    if msg == [1, -1, 1, 1, 0, -1]:
+        result += hex(227)[2:]
+    if msg == [-1, 1, 1, 1, 0, -1]:
+        result += hex(228)[2:]
+    if msg == [1, 1, -1, -1, 1, 0]:
+        result += hex(229)[2:]
+    if msg == [1, 1, -1, 0, -1, 1]:
+        result += hex(230)[2:]
+    if msg == [1, 1, -1, 1, 0, -1]:
+        result += hex(231)[2:]
+    if msg == [-1, 1, 1, 0, 1, -1]:
+        result += hex(232)[2:]
+    if msg == [1, -1, 1, 1, -1, 0]:
+        result += hex(233)[2:]
+    if msg == [1, -1, 1, 0, 1, -1]:
+        result += hex(234)[2:]
+    if msg == [1, -1, 1, -1, 0, 1]:
+        result += hex(235)[2:]
+    if msg == [-1, 1, 1, -1, 0, 1]:
+        result += hex(236)[2:]
+    if msg == [1, 1, -1, 1, -1, 0]:
+        result += hex(237)[2:]
+    if msg == [1, 1, -1, 0, 1, -1]:
+        result += hex(238)[2:]
+    if msg == [1, 1, -1, -1, 0, 1]:
+        result += hex(239)[2:]
+    if msg == [1, 0, 0, 0, -1, 1]:
+        result += hex(240)[2:]
+    if msg == [0, 1, 0, -1, 1, 0]:
+        result += hex(241)[2:]
+    if msg == [0, 1, 0, 0, -1, 1]:
+        result += hex(242)[2:]
+    if msg == [0, 1, 0, 1, 0, -1]:
+        result += hex(243)[2:]
+    if msg == [1, 0, 0, 1, 0, -1]:
+        result += hex(244)[2:]
+    if msg == [0, 0, 1, -1, 1, 0]:
+        result += hex(245)[2:]
+    if msg == [0, 0, 1, 0, -1, 1]:
+        result += hex(246)[2:]
+    if msg == [0, 0, 1, 1, 0, -1]:
+        result += hex(247)[2:]
+    if msg == [1, 0, 0, 0, 1, -1]:
+        result += hex(248)[2:]
+    if msg == [0, 1, 0, 1, -1, 0]:
+        result += hex(249)[2:]
+    if msg == [0, 1, 0, 0, 1, -1]:
+        result += hex(250)[2:]
+    if msg == [0, 1, 0, -1, 0, 1]:
+        result += hex(251)[2:]
+    if msg == [1, 0, 0, -1, 0, 1]:
+        result += hex(252)[2:]
+    if msg == [0, 0, 1, 1, -1, 0]:
+        result += hex(253)[2:]
+    if msg == [0, 0, 1, 0, 1, -1]:
+        result += hex(254)[2:]
+    if msg == [0, 0, 1, -1, 0, 1]:
+        result += hex(255)[2:]
+
+    return result
