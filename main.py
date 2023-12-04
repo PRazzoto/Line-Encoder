@@ -1,6 +1,7 @@
 from interface import *
 from binary_func import *
 from client import *
+from graph import *
 
 
 def enviarDados(Entry):
@@ -54,6 +55,7 @@ def enviarDados(Entry):
     text = "8b/6t:\n" + text_8b6t
     T3.insert(END, text)
 
+    Graph.plot(list)
     tela3.update()
 
 
