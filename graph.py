@@ -1,38 +1,31 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from collections import deque
 
 
 class Graph:
     def plot(list_of_lists):
         list = []
         list2 = []
+        tamanho = 0
         for i in list_of_lists:
             for values in i:
                 list2.append(values)
                 for x in values:
                     list.append(x)
+                    tamanho += 1
 
-        for i in list:
-            print(i)
-        print(len(list))
-        t = np.arange(len(list))
+        t = np.arange(start=0, stop=tamanho, step=1)
+        arr = np.array(list)
 
-        start_index = 0
         for values in list2:
-            end_index = start_index + len(values)
-            normalized_values = (
-                2
-                * (np.array(values) - np.min(values))
-                / (np.max(values) - np.min(values))
-                - 1
-            )
-            plt.plot(t[start_index:end_index], normalized_values, drawstyle="steps-mid")
-            print(t[start_index:end_index])
-            start_index = end_index
+            plt.plot(t, arr, "-o", drawstyle="steps-mid")
 
+        plt.xticks(np.arange(0, tamanho + 1, step=1))
         plt.xlabel("Time")
         plt.ylabel("Amplitude")
+        plt.xlim([0, tamanho])
+        plt.ylim([-1, 1])
         plt.title("Gráfico")
         plt.grid(True)
+        plt.figure(figsize=(10, 6))
         plt.show()
