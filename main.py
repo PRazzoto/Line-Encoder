@@ -115,9 +115,7 @@ def interfaceRecebendo(msg):
     text = "String:\n" + string
     T3.insert(END, text)
 
-    if msg != "":
-        Graph.plot(msg)
-
+    Graph.plot(msg)
     tela3.update()
 
 
