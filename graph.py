@@ -27,5 +27,4 @@ class Graph:
         plt.ylim([-1, 1])
         plt.title("Gráfico")
         plt.grid(True)
-        plt.figure(figsize=(10, 6))
         plt.show()
